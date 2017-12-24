@@ -14,6 +14,19 @@ namespace PartyInvites.Controllers
       return View("MyView");
     }
 
+    [HttpGet]
+    public ViewResult RsvpForm()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ViewResult RsvpForm(GuestResponse guestResponse)
+    {
+      Repository.AddResponse(guestResponse);
+      return View("Thanks", guestResponse);
+    }
+
     public IActionResult Error()
     {
       return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
